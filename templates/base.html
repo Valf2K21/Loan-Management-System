@@ -1,0 +1,50 @@
+<!-- declare document type and version of this html template -->
+<!DOCTYPE html>
+
+<!-- start of html code -->
+<html>
+    <!-- start of head part of the code -->
+    <head>
+        <!-- flask version of importing css dependency for styling -->
+        <link rel="stylesheet" type="text/css" href="{{ url_for("static", filename="style.css" ) }}" />
+        <title>Loan System</title>
+    </head>
+
+    <!-- start of body part of code -->
+    <body>
+        <!-- list as navigation sidebar -->
+        <ul>
+            <li><a class = "title" href = "#">TEST</a></li>
+            <li><a href = "#">Input: Debtor Loans</a></li>
+            <li><a href = "#">Input: Debtor Payments</a></li>
+            <li><a href = "#">View: Debtor Records</a></li>
+        </ul>
+
+        <!-- main div container -->
+        <div class = "content">
+            <!-- sub-div container for input -->
+            <div class = "input">
+                <!-- header for content section of input debtor loan's webpage -->
+                <h1>INPUT: DEBTOR LOANS</h1>
+
+                <!-- input field for debt details -->
+                <form action="#">
+                    <label for="debtor_name">Debtor's Name: </label><br>
+                    <input type="text" id="debtor_name" name="debtor_name" value="Juan dela Cruz"><br>
+                    <label for="debt_date">Loan Date: </label><br>
+                    <input type="text" id="debt_date" name="debt_date" value="YYYY-MM-DD"><br>
+                    <label for="debt_amount">Loan Amount: </label><br>
+                    <input type="text" id="debt_amount" name="debt_amount" value="10000"><br>
+                    <label for="debt_interest_percent">Monthly Interest Rate (%): </label><br>
+                    <input type="text" id="debt_interest_rate" name="debt_interest_rate" value="10"><br>
+                    <input type="submit" value="Submit">
+                </form>
+            </div>
+
+            <!-- sub-div container for output -->
+            <div class="output">
+                <h1>OUTPUT: DATA RECORDED</h1>
+            </div>
+        </div>
+    </body>
+</html>
