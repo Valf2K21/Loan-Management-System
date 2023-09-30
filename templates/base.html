@@ -12,39 +12,57 @@
 
     <!-- start of body part of code -->
     <body>
-        <!-- list as navigation sidebar -->
-        <ul>
-            <li><a class = "title" href = "#">TEST</a></li>
-            <li><a href = "#">Input: Debtor Loans</a></li>
-            <li><a href = "#">Input: Debtor Payments</a></li>
-            <li><a href = "#">View: Debtor Records</a></li>
-        </ul>
-
-        <!-- main div container -->
-        <div class = "content">
-            <!-- sub-div container for input -->
-            <div class = "input">
-                <!-- header for content section of input debtor loan's webpage -->
-                <h1>INPUT: DEBTOR LOANS</h1>
-
-                <!-- input field for debt details -->
-                <form action="#">
-                    <label for="debtor_name">Debtor's Name: </label><br>
-                    <input type="text" id="debtor_name" name="debtor_name" value="Juan dela Cruz"><br>
-                    <label for="debt_date">Loan Date: </label><br>
-                    <input type="text" id="debt_date" name="debt_date" value="YYYY-MM-DD"><br>
-                    <label for="debt_amount">Loan Amount: </label><br>
-                    <input type="text" id="debt_amount" name="debt_amount" value="10000"><br>
-                    <label for="debt_interest_percent">Monthly Interest Rate (%): </label><br>
-                    <input type="text" id="debt_interest_rate" name="debt_interest_rate" value="10"><br>
-                    <input type="submit" value="Submit">
-                </form>
-            </div>
-
-            <!-- sub-div container for output -->
-            <div class="output">
-                <h1>OUTPUT: DATA RECORDED</h1>
-            </div>
+        <!-- container placed on upper left half  for inputting debt records -->
+        <div class="debt_input">
+            <!-- header for debt container -->
+            <h1>DEBT INPUT</h1>
+            <!-- input field for debt details -->
+            <form action="#">
+                <label for="debt_name">DEBTOR'S NAME: </label><br>
+                <input type="text" id="debt_name" name="debt_name" placeholder="Juan dela Cruz"><br>
+                <label for="debt_date">DEBT DATE: </label><br>
+                <input type="text" id="debt_date" name="debt_date" placeholder="YYYY-MM-DD"><br>
+                <label for="debt_amount">DEBT AMOUNT: </label><br>
+                <input type="text" id="debt_amount" name="debt_amount" placeholder="10000"><br>
+                <label for="debt_percent">MONTHLY INTEREST RATE (%): </label><br>
+                <input type="text" id="debt_percent" name="debt_percent" placeholder="10"><br>
+                <label for="debt_interest">INTEREST AMOUNT: </label><br>
+                <input type="text" id="debt_interest" name="debt_interest" placeholder="1000"><br>
+                <label for="debt_total">TOTAL DEBT: </label><br>
+                <input type="text" id="debt_total" name="debt_total" placeholder="11000"><br>
+                <input type="submit" value="SUBMIT">
+            </form>
+        </div>
+        <!-- container placed on lower left half for inputting payment records -->
+        <div class="payment_input">
+            <!-- header for payment container -->
+            <h1>PAYMENT INPUT</h1>
+            <!-- input field for payment details -->
+            <form action="#">
+                <label for="pay_name">PAYER'S NAME: </label><br>
+                <input type="text" id="pay_name" name="pay_name" placeholder="Juan dela Cruz"><br>
+                <label for="pay_date">PAYMENT DATE: </label><br>
+                <input type="text" id="pay_date" name="pay_date" placeholder="YYYY-MM-DD"><br>
+                <label for="pay_principal">PRINCIPAL PAID: </label><br>
+                <input type="text" id="pay_principal" name="pay_principal" placeholder="10000"><br>
+                <label for="pay_interest">INTEREST PAID: </label><br>
+                <input type="text" id="pay_interest" name="pay_interest" placeholder="1000"><br>
+                <label for="pay_total">TOTAL PAYMENT: </label><br>
+                <input type="text" id="pay_total" name="pay_total" placeholder="11000"><br>
+                <input type="submit" value="SUBMIT">
+            </form>
+        </div>
+        <!-- container placed on entire right half for viewing debtor's debt and payment history -->
+        <div class="view_history">
+            <!-- header for history container -->
+            <h1>DEBTOR'S HISTORY</h1>
+            <!-- input field for history details -->
+            <form action="#">
+                <label for="hist_name">DEBTOR'S NAME: </label><br>
+                <input type="text" id="hist_name" name="hist_name" placeholder="Juan dela Cruz"><br>
+                <label for="hist_balance">RUNNING BALANCE: </label><br>
+                <input type="text" id="hist_balance" name="hist_balance" placeholder="11000"><br>
+            </form>
         </div>
     </body>
 </html>
