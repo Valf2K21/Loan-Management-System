@@ -18,18 +18,18 @@
             <h1>DEBT INPUT</h1>
             <!-- input field for debt details -->
             <form action="#">
-                <label for="debt_name">DEBTOR'S NAME: </label><br>
-                <input type="text" id="debt_name" name="debt_name" placeholder="Juan dela Cruz"><br>
-                <label for="debt_date">DEBT DATE: </label><br>
-                <input type="text" id="debt_date" name="debt_date" placeholder="YYYY-MM-DD"><br>
-                <label for="debt_amount">DEBT AMOUNT: </label><br>
-                <input type="text" id="debt_amount" name="debt_amount" placeholder="10000"><br>
-                <label for="debt_percent">MONTHLY INTEREST RATE (%): </label><br>
-                <input type="text" id="debt_percent" name="debt_percent" placeholder="10"><br>
-                <label for="debt_interest">INTEREST AMOUNT: </label><br>
-                <input type="text" id="debt_interest" name="debt_interest" placeholder="1000"><br>
-                <label for="debt_total">TOTAL DEBT: </label><br>
-                <input type="text" id="debt_total" name="debt_total" placeholder="11000"><br>
+                <label for="debt_name">DEBTOR'S NAME: </label>
+                <input type="text" id="debt_name" name="debt_name" placeholder="Juan dela Cruz">
+                <label for="debt_date">DEBT DATE: </label>
+                <input type="text" id="debt_date" name="debt_date" placeholder="YYYY-MM-DD">
+                <label for="debt_amount">DEBT AMOUNT: </label>
+                <input type="text" id="debt_amount" name="debt_amount" placeholder="10000">
+                <label for="debt_percent">INTEREST RATE (%): </label>
+                <input type="text" id="debt_percent" name="debt_percent" placeholder="10">
+                <label for="debt_interest">INTEREST AMOUNT: </label>
+                <input type="text" id="debt_interest" name="debt_interest" placeholder="1000">
+                <label for="debt_total">TOTAL DEBT: </label>
+                <input type="text" id="debt_total" name="debt_total" placeholder="11000">
                 <input type="submit" value="SUBMIT">
             </form>
         </div>
@@ -39,16 +39,16 @@
             <h1>PAYMENT INPUT</h1>
             <!-- input field for payment details -->
             <form action="#">
-                <label for="pay_name">PAYER'S NAME: </label><br>
-                <input type="text" id="pay_name" name="pay_name" placeholder="Juan dela Cruz"><br>
-                <label for="pay_date">PAYMENT DATE: </label><br>
-                <input type="text" id="pay_date" name="pay_date" placeholder="YYYY-MM-DD"><br>
-                <label for="pay_principal">PRINCIPAL PAID: </label><br>
-                <input type="text" id="pay_principal" name="pay_principal" placeholder="10000"><br>
-                <label for="pay_interest">INTEREST PAID: </label><br>
-                <input type="text" id="pay_interest" name="pay_interest" placeholder="1000"><br>
-                <label for="pay_total">TOTAL PAYMENT: </label><br>
-                <input type="text" id="pay_total" name="pay_total" placeholder="11000"><br>
+                <label for="pay_name">PAYER'S NAME: </label>
+                <input type="text" id="pay_name" name="pay_name" placeholder="Juan dela Cruz">
+                <label for="pay_date">PAYMENT DATE: </label>
+                <input type="text" id="pay_date" name="pay_date" placeholder="YYYY-MM-DD">
+                <label for="pay_principal">PRINCIPAL PAID: </label>
+                <input type="text" id="pay_principal" name="pay_principal" placeholder="10000">
+                <label for="pay_interest">INTEREST PAID: </label>
+                <input type="text" id="pay_interest" name="pay_interest" placeholder="1000">
+                <label for="pay_total">TOTAL PAYMENT: </label>
+                <input type="text" id="pay_total" name="pay_total" placeholder="11000">
                 <input type="submit" value="SUBMIT">
             </form>
         </div>
@@ -58,11 +58,22 @@
             <h1>DEBTOR'S HISTORY</h1>
             <!-- input field for history details -->
             <form action="#">
-                <label for="hist_name">DEBTOR'S NAME: </label><br>
-                <input type="text" id="hist_name" name="hist_name" placeholder="Juan dela Cruz"><br>
-                <label for="hist_balance">RUNNING BALANCE: </label><br>
-                <input type="text" id="hist_balance" name="hist_balance" placeholder="11000"><br>
+                <label for="hist_name">DEBTOR'S NAME: </label>
+                <input type="text" id="hist_name" name="hist_name" placeholder="Juan dela Cruz">
+                <label for="hist_balance">RUNNING BALANCE: </label>
+                <input type="text" id="hist_balance" name="hist_balance" placeholder="11000">
+                <label>
+                    <input type="radio" name="hist_type" value="debt">   VIEW DEBT HISTORY
+                </label>
+                <label>
+                    <input type="radio" name="hist_type" value="debt">   VIEW PAYMENT HISTORY
+                </label>
+                <input type="submit" value="SUBMIT">
             </form>
+            <!-- container placed inside "view history" container for storing selected history table -->
+            <div class="history">
+                
+            </div>
         </div>
     </body>
 </html>
