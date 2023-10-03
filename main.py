@@ -19,8 +19,11 @@ app = Flask(__name__)
 
 # create user-defined function for loan system to return what to display at user
 def loan_system():
+    # test: sending processed rows of data to html template
+    items = [["1", "2023-10-01", "10000", "10", "1000", "11000"], ["2", "2023-11-01", "5000", "10", "500", "5500"]]
+
     # use render_template() function to grab filled HTML template and return to display it
-    return render_template('base.html')
+    return render_template('base.html', items = items)
 
 # if-statement to run FLask web application instance
 if __name__ == '__main__':

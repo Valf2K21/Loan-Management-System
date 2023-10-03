@@ -72,7 +72,23 @@
             </form>
             <!-- container placed inside "view history" container for storing selected history table -->
             <div class="history">
-                
+                <table id="debt_table">
+                    <tr>
+                        <th>ID</th>
+                        <th>DEBT DATE</th>
+                        <th>DEBT AMOUNT</th>
+                        <th>INTEREST RATE (%)</th>
+                        <th>INTEREST AMOUNT</th>
+                        <th>TOTAL DEBT</th>
+                    </tr>
+                    {% for row in items %}
+                    <tr>
+                        {% for item in row %}
+                        <td>{{ item }}</td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </table>
             </div>
         </div>
     </body>

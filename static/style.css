@@ -1,47 +1,60 @@
 body {
     margin: 0px;
+    background-color: #F6F6F6;
+    color: #004EA8;
+    min-width: 1366px;
+    min-height: 768px;
+    overflow: auto;
 }
 
 div.debt_input {
     /* styles for container's physical dimensions and position */
     width: 50%;
     height: 50%;
+    min-width: 683px;
+    min-height: 384px;
     position: absolute;
     top: 0;
     left: 0;
     box-sizing: border-box;
     /* styles for container's aesthetic design and its children */
+    justify-content: center;
     align-items: center;
     display: flex;
     flex-direction: column;
     padding: 20px;
     border: 5px solid red;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 20px;
+    font-size: 15px;
 }
 
 div.payment_input {
     /* styles for container's physical dimensions and position */
     width: 50%;
     height: 50%;
+    min-width: 683px;
+    min-height: 384px;
     position: absolute;
     bottom: 0;
     left: 0;
     box-sizing: border-box;
     /* styles for container's aesthetic design and its children */
+    justify-content: center;
     align-items: center;
     display: flex;
     flex-direction: column;
     padding: 20px;
     border: 5px solid blue;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 20px;
+    font-size: 15px;
 }
 
 div.view_history {
     /* styles for container's physical dimensions and position */
     width: 50%;
     height: 100%;
+    min-width: 683px;
+    min-height: 768px;
     position: absolute;
     right: 0;
     box-sizing: border-box;
@@ -52,27 +65,12 @@ div.view_history {
     padding: 20px;
     border: 5px solid green;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 20px;
-}
-
-div div.history {
-    /* styles for container's physical dimensions and position */
-    width: 95%;
-    height: 75%;
-    position: absolute;
-    bottom: 0;
-    box-sizing: border-box;
-    /* styles for container's aesthetic design and its children */
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    border: 5px solid yellow;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 20px;
+    font-size: 15px;
 }
 
 div h1 {
-    font-size: 37px;
+    margin-top: 0px;
+    font-size: 30px;
     text-align: center;
 }
 
@@ -90,7 +88,7 @@ div label {
 
 div input[type = "text"] {
     width: 100%;
-    font-size: 20px;
+    font-size: 15px;
 }
 
 div input[type = "submit"] {
@@ -99,5 +97,51 @@ div input[type = "submit"] {
     grid-column: span 2;
     margin: 0 auto;
     display: block;
-    font-size: 20px;
+    font-size: 15px;
+    color: #004EA8;
+}
+
+div div.history {
+    /* styles for container's physical dimensions and position */
+    width: 95%;
+    height: 70%;
+    position: absolute;
+    bottom: 0;
+    box-sizing: border-box;
+    /* styles for container's aesthetic design and its children */
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border: 5px solid #FCB913;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+}
+
+div div table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+div div th {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: center;
+    background-color: #004EA8;
+    color: white;
+}
+
+div div td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: center;
+    font-weight: normal;
+}
+
+div div tr {
+    color: black;
+}
+
+div div tr:nth-child(odd) {
+    background-color: #9AC1E6;
 }
