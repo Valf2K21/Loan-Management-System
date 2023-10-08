@@ -1,0 +1,13 @@
+<!-- use extend to inherit the features of the parent template-->
+{% extends 'base.html' %}
+<!-- fill the empty headers block in tne parent template --->
+{% block headers %}
+<tr>
+    <th>ID</th>
+    <th>DEBT DATE</th>
+    <th>DEBT AMOUNT</th>
+    <th>INTEREST RATE (%)</th>
+    <th>INTEREST AMOUNT</th>
+    <th>TOTAL DEBT</th>
+</tr>
+{% endblock %}
