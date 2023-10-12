@@ -14,45 +14,66 @@
     <body>
         <!-- main container for grid purposes -->
         <div class="gui">
-            <!-- container placed on upper left half  for inputting debt records -->
-            <div class="debt_input">
-                <!-- header for debt container -->
-                <h1>DEBT INPUT</h1>
-                <!-- input field for debt details -->
-                <form action="#" method="POST">
-                    <label for="debt_name">DEBTOR'S NAME: </label>
-                    <input type="text" id="debt_name" name="debt_name" placeholder="Juan dela Cruz" pattern="[A-Za-z\s]+" required>
-                    <label for="debt_date">DEBT DATE: </label>
-                    <input type="text" id="debt_date" name="debt_date" placeholder="YYYY-MM-DD" pattern="^\d{4}-\d{2}-\d{2}$" required>
-                    <label for="debt_amount">DEBT AMOUNT: </label>
-                    <input type="text" id="debt_amount" name="debt_amount" placeholder="10000" pattern="^\d+$" required>
-                    <label for="debt_percent">INTEREST RATE (%): </label>
-                    <input type="text" id="debt_percent" name="debt_percent" placeholder="10" pattern="^\d+$" required>
-                    <label for="debt_interest">INTEREST AMOUNT: </label>
-                    <input type="text" id="debt_interest" name="debt_interest" placeholder="1000" pattern="^\d+$" required>
-                    <label for="debt_total">TOTAL DEBT: </label>
-                    <input type="text" id="debt_total" name="debt_total" placeholder="11000" pattern="^\d+$" required>
-                    <button type="submit" name="submit_button" value="debt_input">SUBMIT</button>
-                </form>
-            </div>
-            <!-- container placed on lower left half for inputting payment records -->
-            <div class="payment_input">
-                <!-- header for payment container -->
-                <h1>PAYMENT INPUT</h1>
-                <!-- input field for payment details -->
-                <form action="#" method="POST">
-                    <label for="pay_name">PAYER'S NAME: </label>
-                    <input type="text" id="pay_name" name="pay_name" placeholder="Juan dela Cruz" pattern="[A-Za-z\s]+" required>
-                    <label for="pay_date">PAYMENT DATE: </label>
-                    <input type="text" id="pay_date" name="pay_date" placeholder="YYYY-MM-DD" pattern="^\d{4}-\d{2}-\d{2}$" required>
-                    <label for="pay_principal">PRINCIPAL PAID: </label>
-                    <input type="text" id="pay_principal" name="pay_principal" placeholder="10000" pattern="^\d+$" required>
-                    <label for="pay_interest">INTEREST PAID: </label>
-                    <input type="text" id="pay_interest" name="pay_interest" placeholder="1000" pattern="^\d+$" required>
-                    <label for="pay_total">TOTAL PAYMENT: </label>
-                    <input type="text" id="pay_total" name="pay_total" placeholder="11000" pattern="^\d+$" required>
-                    <button type="submit" name="submit_button" value="payment_input">SUBMIT</button>
-                </form>
+            <!-- container placed on entire left half for inputting records -->
+            <div class="input_records">
+                <!-- container placed on upper left half  for inputting debtor records -->
+                <div class="debtor_input inputs">
+                    <!-- header for debtor container -->
+                    <h1>DEBTOR INPUT</h1>
+                    <!-- input field for debtor details -->
+                    <form action="#" method="POST">
+                        <label for="debtor_name">DEBTOR'S NAME: </label>
+                        <input type="text" id="debtor_name" name="debtor_name" placeholder="Juan dela Cruz" pattern="[A-Za-z\s]+" required>
+                        <label for="debtor_age">AGE: </label>
+                        <input type="text" id="debtor_age" name="debtor_age" placeholder="20" pattern="^\d+$"
+                            required>
+                        <label for="debtor_address">ADDRESS: </label>
+                        <input type="text" id="debtor_address" name="debtor_address" placeholder="Quezon City" pattern="[A-Za-z\s]+" required>
+                        <label for="debtor_phone">PHONE NUMBER: </label>
+                        <input type="text" id="debtor_phone" name="debtor_phone" placeholder="09263316508" pattern="^\d+$" required>
+                        <button type="submit" name="submit_button" value="debtor_input">SUBMIT</button>
+                    </form>
+                </div>
+                <!-- container placed on upper left half  for inputting debt records -->
+                <div class="debt_input inputs">
+                    <!-- header for debt container -->
+                    <h1>DEBT INPUT</h1>
+                    <!-- input field for debt details -->
+                    <form action="#" method="POST">
+                        <label for="debt_name">DEBTOR'S NAME: </label>
+                        <input type="text" id="debt_name" name="debt_name" placeholder="Juan dela Cruz" pattern="[A-Za-z\s]+" required>
+                        <label for="debt_date">DEBT DATE: </label>
+                        <input type="text" id="debt_date" name="debt_date" placeholder="YYYY-MM-DD" pattern="^\d{4}-\d{2}-\d{2}$" required>
+                        <label for="debt_amount">DEBT AMOUNT: </label>
+                        <input type="text" id="debt_amount" name="debt_amount" placeholder="10000" pattern="^\d+$" required>
+                        <label for="debt_percent">INTEREST RATE (%): </label>
+                        <input type="text" id="debt_percent" name="debt_percent" placeholder="10" pattern="^\d+$" required>
+                        <label for="debt_interest">INTEREST AMOUNT: </label>
+                        <input type="text" id="debt_interest" name="debt_interest" placeholder="1000" pattern="^\d+$" required>
+                        <label for="debt_total">TOTAL DEBT: </label>
+                        <input type="text" id="debt_total" name="debt_total" placeholder="11000" pattern="^\d+$" required>
+                        <button type="submit" name="submit_button" value="debt_input">SUBMIT</button>
+                    </form>
+                </div>
+                <!-- container placed on lower left half for inputting payment records -->
+                <div class="payment_input inputs">
+                    <!-- header for payment container -->
+                    <h1>PAYMENT INPUT</h1>
+                    <!-- input field for payment details -->
+                    <form action="#" method="POST">
+                        <label for="pay_name">DEBTOR'S NAME: </label>
+                        <input type="text" id="pay_name" name="pay_name" placeholder="Juan dela Cruz" pattern="[A-Za-z\s]+" required>
+                        <label for="pay_date">PAYMENT DATE: </label>
+                        <input type="text" id="pay_date" name="pay_date" placeholder="YYYY-MM-DD" pattern="^\d{4}-\d{2}-\d{2}$" required>
+                        <label for="pay_principal">PRINCIPAL PAID: </label>
+                        <input type="text" id="pay_principal" name="pay_principal" placeholder="10000" pattern="^\d+$" required>
+                        <label for="pay_interest">INTEREST PAID: </label>
+                        <input type="text" id="pay_interest" name="pay_interest" placeholder="1000" pattern="^\d+$" required>
+                        <label for="pay_total">TOTAL PAYMENT: </label>
+                        <input type="text" id="pay_total" name="pay_total" placeholder="11000" pattern="^\d+$" required>
+                        <button type="submit" name="submit_button" value="payment_input">SUBMIT</button>
+                    </form>
+                </div>
             </div>
             <!-- container placed on entire right half for viewing debtor's debt and payment history -->
             <div class="view_history">

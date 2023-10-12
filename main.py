@@ -5,6 +5,7 @@ from flask import Flask, render_template, request
 
 # import user-created dependencies:
 from functions.debt_input import debt_input
+from functions.debtor_input import debtor_input
 from functions.payment_input import payment_input
 from functions.view_debt_history import view_debt_history
 from functions.view_payment_history import view_payment_history
@@ -27,8 +28,18 @@ def loan_system():
     # use request.form.get() function to retrieve value of clicked submit_button
     button_id = request.form.get('submit_button')
 
-    # if-elif conditional statements to call specific functions for debt and payment inputs, respectively
-    if button_id == 'debt_input':
+    # if-elif conditional statements to call specific functions for debtor, debt and payment inputs, respectively
+    if button_id == 'debtor_input':
+        # use request.form.get() function to retrieve data stored in specific input IDs
+        debtor_name = request.form.get('debtor_name')
+        debtor_age = request.form.get('debtor_age')
+        debtor_address = request.form.get('debtor_address')
+        debtor_phone = request.form.get('debtor_phone')
+
+        # call debtor_input() function to conduct debtor input-related data processing
+        debtor_input(debtor_name, debtor_age, debtor_address, debtor_phone)
+    
+    elif button_id == 'debt_input':
         # use request.form.get() function to retrieve data stored in specific input IDs
         debt_name = request.form.get('debt_name')
         debt_date = request.form.get('debt_date')

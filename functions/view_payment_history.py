@@ -1,5 +1,5 @@
 # import dependencies
-import pyodbc
+import psycopg2
 
 # function 1: retrieve user-submitted data from view history
 def view_payment_history(hist_name):
