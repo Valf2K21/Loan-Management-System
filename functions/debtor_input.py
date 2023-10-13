@@ -21,17 +21,28 @@ def debtor_input(debtor_name, debtor_age, debtor_address, debtor_phone):
     c = conn.cursor()
 
     # use created cursor to check if user-inputted name is already in the tb_debtor_records table
-    c.execute('SELECT * FROM tb_debtor_records WHERE name = %s', (debtor_name, ))
+    c.execute('SELECT id FROM tb_debtor_records WHERE name = %s', (debtor_name, ))
 
-    # fetch all data gathered by the cursor
-    debtorData = c.fetchall()
+    # fetch data gathered by the cursor
+    debtor_id = c.fetchone()
+
+    # if-elif statement to check if the query returned a record that matches debtor_name
+    if debtor_id is None:
+        # use created cursor to add new data into tb_debtor_records table
+        c.execute('INSERT INTO tb_debtor_records(name, age, address, phone_number) VALUES(%s, %s, %s, %s)', (debtor_name, debtor_age, debtor_address, debtor_phone, ))
+        print('NEW DATA ADDED INTO DEBTOR RECORDS SUCCESSFULLY!')
+
+    elif debtor_id is not None:
+        # use created cursor to update name's existing record from tb_debtor_records table
+        c.execute('UPDATE tb_debtor_records SET age = %s, address = %s, phone_number = %s WHERE id = %s', (debtor_age, debtor_address, debtor_phone, debtor_id, ))
+        print('NAME EXISTS IN DEBTOR RECORDS AND ITS RECORD UPDATED SUCCESSFULLY!')
+
+    # commit changes to the database
+    conn.commit()
 
     # use pd.dataframe() function to store fetched data into a dataframe
-    debtorDf = pd.DataFrame(debtorData, columns = ['id', 'name', 'age', 'address', 'phone_number'])
+    #debtorDf = pd.DataFrame(debtorData, columns = ['id', 'name', 'age', 'address', 'phone_number'])
 
     # close cursor and connect objects after the process
     c.close()
     conn.close()
-
-    # return dataframe
-    print(debtorDf)

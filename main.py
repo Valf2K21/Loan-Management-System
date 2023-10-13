@@ -50,6 +50,7 @@ def loan_system():
 
         # call debt_input() function to conduct debt input-related data processing
         debt_input(debt_name, debt_date, debt_amount, debt_percent, debt_interest, debt_total)
+
     elif button_id == 'payment_input':
         # use request.form.get() function to retrieve data stored in specific input IDs
         pay_name = request.form.get('pay_name')
@@ -60,9 +61,8 @@ def loan_system():
 
         # call payment_input() function to conduct payment input-related data processing
         payment_input(pay_name, pay_date, pay_principal, pay_interest, pay_total)
-
-    # if conditional statement to check current request method for view history
-    if request.method == 'POST':
+        
+    elif button_id == 'view_history':
         # use request.form.get() function to retrieve data stored in specific input IDs
         hist_name = request.form.get('hist_name')
         hist_type = request.form.get('hist_type')
@@ -70,16 +70,16 @@ def loan_system():
         # if-elif conditional statements to call specific functions for viewing debt and payment histories, respectively
         if hist_type == 'debt_view':
             # call view_debt_history() function to conduct debt history viewing-related data processing
-            items = view_debt_history(hist_name)
+            hist_data, running_balance = view_debt_history(hist_name)
 
             # use render_template() function to grab filled HTML template and return to display it
-            return render_template('child-hist-debt.html', items = items)
+            return render_template('child-hist-debt.html', hist_data = hist_data, running_balance = running_balance[0])
         elif hist_type == 'payment_view':
             # call view_payment_history() function to conduct payment history viewing-related data processing
-            items = view_payment_history(hist_name)
+            hist_data, running_balance = view_payment_history(hist_name)
 
             # use render_template() function to grab filled HTML template and return to display it
-            return render_template('child-hist-payment.html', items = items)
+            return render_template('child-hist-payment.html', hist_data = hist_data, running_balance = running_balance[0])
 
     # use render_template() function to grab filled HTML template and return to display it
     return render_template('base.html')

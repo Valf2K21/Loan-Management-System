@@ -12,6 +12,9 @@
 
     <!-- start of body part of code -->
     <body>
+        <!-- import two javascript files for displaying pop-up messages -->
+        <script src="{{ url_for('static', filename='popup.js') }}"></script>
+
         <!-- main container for grid purposes -->
         <div class="gui">
             <!-- container placed on entire left half for inputting records -->
@@ -79,7 +82,7 @@
             <div class="view_history">
                 <div class="history_input">
                     <!-- header for history container -->
-                    <h1>DEBTOR'S HISTORY</h1>
+                    <h1>DEBTOR HISTORY</h1>
                     <!-- input field for history details -->
                     <form action="#" method="POST">
                         <label for="hist_name">DEBTOR'S NAME: </label>
@@ -92,14 +95,14 @@
                         </label>
                         <button type="submit" name="submit_button" value="view_history">SUBMIT</button>
                         <label for="hist_balance">RUNNING BALANCE: </label>
-                        <input type="text" id="hist_balance" name="hist_balance" placeholder="11000">
+                        <input type="text" id="hist_balance" name="hist_balance" value="{{ running_balance }}" readonly>
                     </form>
                 </div>
                 <!-- container placed inside "view history" container for storing selected history table -->
                 <div class="history_display">
                     <table id="debt_table">
                         {% block headers %}{% endblock %}
-                        {% for row in items %}
+                        {% for row in hist_data %}
                         <tr>
                             {% for item in row %}
                             <td>{{ item }}</td>
