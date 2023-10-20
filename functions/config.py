@@ -3,9 +3,6 @@ from configparser import ConfigParser
 
 # define a function for config parsing process
 def config(filename = 'database.ini', section = 'postgresql'):
-    # debug: print message to confirm that this function has been called
-    print('DEBUG: FUNCTION config CALLED SUCCESSFULLY!')
-
     # create a parser object
     parser = ConfigParser()
 
@@ -15,7 +12,7 @@ def config(filename = 'database.ini', section = 'postgresql'):
     # create an empty dictionary to store config file data later
     db = {}
 
-    # if-statement to confirm a section exists in config file prior to processing
+    # if-else statement to confirm if passed section exists in config file prior to processing
     if parser.has_section(section):
         # get the saved parameters in that section
         params = parser.items(section)

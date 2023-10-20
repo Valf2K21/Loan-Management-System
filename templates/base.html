@@ -1,20 +1,19 @@
-<!-- declare document type and version of this html template -->
+<!-- declare document type -->
 <!DOCTYPE html>
 
 <!-- start of html code -->
 <html>
     <!-- start of head part of the code -->
     <head>
-        <!-- flask version of importing css dependency for styling -->
-        <link rel="stylesheet" type="text/css" href="{{ url_for("static", filename="style.css" ) }}" />
-        <title>Loan System</title>
+        <!-- import user-created css dependency -->
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css' ) }}" />
+
+        <!-- add a title to the loan system -->
+        <title>Loan System v1.0</title>
     </head>
 
     <!-- start of body part of code -->
     <body>
-        <!-- import two javascript files for displaying pop-up messages -->
-        <script src="{{ url_for('static', filename='popup.js') }}"></script>
-
         <!-- main container for grid purposes -->
         <div class="gui">
             <!-- container placed on entire left half for inputting records -->
@@ -23,95 +22,104 @@
                 <div class="debtor_input inputs">
                     <!-- header for debtor container -->
                     <h1>DEBTOR INPUT</h1>
-                    <!-- input field for debtor details -->
-                    <form action="#" method="POST">
+
+                    <!-- form field for debtor details labels, inputs and submit button -->
+                    <form id="debtor_form" action="#" method="POST">
                         <label for="debtor_name">DEBTOR'S NAME: </label>
-                        <input type="text" id="debtor_name" name="debtor_name" placeholder="Juan dela Cruz" pattern="[A-Za-z\s]+" required>
+                        <input type="text" id="debtor_name" name="debtor_name" placeholder="Juan dela Cruz" pattern="[A-Za-z\s]{1,50}" required>
                         <label for="debtor_age">AGE: </label>
-                        <input type="text" id="debtor_age" name="debtor_age" placeholder="20" pattern="^\d+$"
-                            required>
+                        <input type="text" id="debtor_age" name="debtor_age" placeholder="20" pattern="^\d{1,2}">
                         <label for="debtor_address">ADDRESS: </label>
-                        <input type="text" id="debtor_address" name="debtor_address" placeholder="Quezon City" pattern="[A-Za-z\s]+" required>
+                        <input type="text" id="debtor_address" name="debtor_address" placeholder="Quezon City" pattern="[A-Za-z\s]{1,100}">
                         <label for="debtor_phone">PHONE NUMBER: </label>
-                        <input type="text" id="debtor_phone" name="debtor_phone" placeholder="09263316508" pattern="^\d+$" required>
-                        <button type="submit" name="submit_button" value="debtor_input">SUBMIT</button>
+                        <input type="text" id="debtor_phone" name="debtor_phone" placeholder="09263316508" pattern="^\d{1,11}">
+                        <button type="submit" id="debtor_submit" disabled onclick="transactor(event, 'debtor_input')">SUBMIT</button>
                     </form>
                 </div>
-                <!-- container placed on upper left half  for inputting debt records -->
+
+                <!-- container placed on central left half for inputting debt records -->
                 <div class="debt_input inputs">
                     <!-- header for debt container -->
                     <h1>DEBT INPUT</h1>
-                    <!-- input field for debt details -->
-                    <form action="#" method="POST">
+
+                    <!-- form field for debt details labels, inputs and submit button -->
+                    <form id="debt_form" action="#" method="POST">
                         <label for="debt_name">DEBTOR'S NAME: </label>
-                        <input type="text" id="debt_name" name="debt_name" placeholder="Juan dela Cruz" pattern="[A-Za-z\s]+" required>
+                        <input type="text" id="debt_name" name="debt_name" placeholder="Juan dela Cruz" pattern="[A-Za-z\s]{1,50}" required>
                         <label for="debt_date">DEBT DATE: </label>
                         <input type="text" id="debt_date" name="debt_date" placeholder="YYYY-MM-DD" pattern="^\d{4}-\d{2}-\d{2}$" required>
                         <label for="debt_amount">DEBT AMOUNT: </label>
-                        <input type="text" id="debt_amount" name="debt_amount" placeholder="10000" pattern="^\d+$" required>
+                        <input type="text" id="debt_amount" name="debt_amount" placeholder="10000" pattern="^\d{1,6}(\.\d{2})?$" required>
                         <label for="debt_percent">INTEREST RATE (%): </label>
-                        <input type="text" id="debt_percent" name="debt_percent" placeholder="10" pattern="^\d+$" required>
+                        <input type="text" id="debt_percent" name="debt_percent" placeholder="10" pattern="^\d{1,2}(\.\d{2})?$" required>
                         <label for="debt_interest">INTEREST AMOUNT: </label>
-                        <input type="text" id="debt_interest" name="debt_interest" placeholder="1000" pattern="^\d+$" required>
+                        <input type="text" id="debt_interest" name="debt_interest" placeholder="1000" pattern="^\d{1,6}(\.\d{2})?$" required>
                         <label for="debt_total">TOTAL DEBT: </label>
-                        <input type="text" id="debt_total" name="debt_total" placeholder="11000" pattern="^\d+$" required>
-                        <button type="submit" name="submit_button" value="debt_input">SUBMIT</button>
+                        <input type="text" id="debt_total" name="debt_total" placeholder="11000" pattern="^\d{1,6}(\.\d{2})?$" required>
+                        <button type="submit" id="debt_submit" disabled onclick="transactor(event, 'debt_input')">SUBMIT</button>
                     </form>
                 </div>
+
                 <!-- container placed on lower left half for inputting payment records -->
                 <div class="payment_input inputs">
                     <!-- header for payment container -->
                     <h1>PAYMENT INPUT</h1>
-                    <!-- input field for payment details -->
-                    <form action="#" method="POST">
+
+                    <!-- form field for payment details labels, inputs, and submit button -->
+                    <form id="payment_form" action="#" method="POST">
                         <label for="pay_name">DEBTOR'S NAME: </label>
-                        <input type="text" id="pay_name" name="pay_name" placeholder="Juan dela Cruz" pattern="[A-Za-z\s]+" required>
+                        <input type="text" id="pay_name" name="pay_name" placeholder="Juan dela Cruz" pattern="[A-Za-z\s]{1,50}" required>
                         <label for="pay_date">PAYMENT DATE: </label>
                         <input type="text" id="pay_date" name="pay_date" placeholder="YYYY-MM-DD" pattern="^\d{4}-\d{2}-\d{2}$" required>
                         <label for="pay_principal">PRINCIPAL PAID: </label>
-                        <input type="text" id="pay_principal" name="pay_principal" placeholder="10000" pattern="^\d+$" required>
+                        <input type="text" id="pay_principal" name="pay_principal" placeholder="10000" pattern="^\d{1,6}(\.\d{2})?$" required>
                         <label for="pay_interest">INTEREST PAID: </label>
-                        <input type="text" id="pay_interest" name="pay_interest" placeholder="1000" pattern="^\d+$" required>
+                        <input type="text" id="pay_interest" name="pay_interest" placeholder="1000" pattern="^\d{1,6}(\.\d{2})?$" required>
                         <label for="pay_total">TOTAL PAYMENT: </label>
-                        <input type="text" id="pay_total" name="pay_total" placeholder="11000" pattern="^\d+$" required>
-                        <button type="submit" name="submit_button" value="payment_input">SUBMIT</button>
+                        <input type="text" id="pay_total" name="pay_total" placeholder="11000" pattern="^\d{1,6}(\.\d{2})?$" required>
+                        <button type="submit" id="pay_submit" disabled onclick="transactor(event, 'payment_input')">SUBMIT</button>
                     </form>
                 </div>
             </div>
+
             <!-- container placed on entire right half for viewing debtor's debt and payment history -->
             <div class="view_history">
+                <!-- container placed on upper right half for querying debtor history -->
                 <div class="history_input">
                     <!-- header for history container -->
                     <h1>DEBTOR HISTORY</h1>
-                    <!-- input field for history details -->
-                    <form action="#" method="POST">
+
+                    <!-- form field for history details labels, inputs, radio buttons, and submit button -->
+                    <form id="history_form" action="#" method="POST">
                         <label for="hist_name">DEBTOR'S NAME: </label>
-                        <input type="text" id="hist_name" name="hist_name" placeholder="Juan dela Cruz" pattern="[A-Za-z\s]+" required>
+                        <input type="text" id="hist_name" name="hist_name" placeholder="Juan dela Cruz" pattern="[A-Za-z\s]{1,50}" required>
                         <label>
                             <input type="radio" name="hist_type" value="debt_view" required>   VIEW DEBT HISTORY
                         </label>
                         <label>
                             <input type="radio" name="hist_type" value="payment_view" required>   VIEW PAYMENT HISTORY
                         </label>
-                        <button type="submit" name="submit_button" value="view_history">SUBMIT</button>
+                        <button type="submit" id="hist_submit" disabled onclick="transactor(event, 'view_history')">SUBMIT</button>
                         <label for="hist_balance">RUNNING BALANCE: </label>
                         <input type="text" id="hist_balance" name="hist_balance" value="{{ running_balance }}" readonly>
                     </form>
                 </div>
-                <!-- container placed inside "view history" container for storing selected history table -->
+
+                <!-- container placed on lower right half for storing selected history table -->
                 <div class="history_display">
-                    <table id="debt_table">
-                        {% block headers %}{% endblock %}
-                        {% for row in hist_data %}
-                        <tr>
-                            {% for item in row %}
-                            <td>{{ item }}</td>
-                            {% endfor %}
-                        </tr>
-                        {% endfor %}
-                    </table>
+                    <!-- empty table that javascript will fill for viewing either debt or payment history -->
+                    <table id="history_table"></table>
                 </div>
             </div>
         </div>
+
+        <!-- hidden container for toast notifications -->
+        <div id="toast_box"></div>
+        
+        <!-- import user-created javascript dependencies -->
+        <script src="{{ url_for('static', filename='check_form.js') }}"></script>
+        <script src="{{ url_for('static', filename='show_toast.js') }}"></script>
+        <script src="{{ url_for('static', filename='table_generator.js') }}"></script>
+        <script src="{{ url_for('static', filename='transactor.js') }}"></script>
     </body>
 </html>

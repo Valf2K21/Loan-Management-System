@@ -1,19 +1,15 @@
 # import dependencies
 import psycopg2
-import pandas as pd
 
 # import user-created dependencies
 from .config import config
 
-# function 1: retrieve user-submitted data from debt input
+# create a function to process user-submitted data from debt input
 def debt_input(debt_name, debt_date, debt_amount, debt_percent, debt_interest, debt_total):
-    # debug: print message to confirm that this function has been called
-    print('DEBUG: FUNCTION debt_input CALLED SUCCESSFULLY!')
-
-    # call config() function and store results in a variable
+    # call config() function and store server parameters in a variable
     params = config()
 
-    # use psycopg2.connect() function to connect to stated PostgreSQL server
+    # use psycopg2.connect() function to connect to PostgreSQL server
     # note: ** means we want to extract the values of the returned dictionary stored in parans variable
     conn = psycopg2.connect(**params)
 
@@ -26,29 +22,44 @@ def debt_input(debt_name, debt_date, debt_amount, debt_percent, debt_interest, d
     # fetch data gathered by the cursor
     debtor_id = c.fetchone()
 
-    # use created cursor to add new data into tb_debt_records table
-    c.execute('INSERT INTO tb_debt_records(debtor_id, debt_date, debt_amount, interest_rate, interest_amount, total_debt) VALUES(%s, %s, %s, %s, %s, %s)', (debtor_id, debt_date, debt_amount, debt_percent, debt_interest, debt_total, ))
-    print('NEW DATA ADDED INTO DEBT RECORDS SUCCESSFULLY!')
+    # if-elif statement to check if the query returned a record that matches debt_name
+    if debtor_id is None:
+        # store a toast type in a variable for css styling of the toast message to be displayed
+        toast_type = 'fail'
 
-    # use created cursor to check if user-inputted name has existing balance record in tb_balance_records already
-    c.execute('SELECT id, running_balance FROM tb_balance_records WHERE debtor_id = %s', (debtor_id, ))
-
-    # fetch data gathered by the cursor
-    balance_data = c.fetchone()
-
-    # if-elif statement to check if the query returned a record that matches debtor_id
-    if balance_data is None:
-        # use created cursor to add new data into tb_balance_records table
-        c.execute('INSERT INTO tb_balance_records(debtor_id, running_balance) VALUES(%s, %s)', (debtor_id, debt_total))
-        print('NEW DATA ADDED INTO BALANCE RECORDS SUCCESSFULLY!')
+        # store a toast message in a variable to notify user that submitted name is new, therefore debtor data must be submitted first before submitting debt data
+        toast_message = "<img src='/static/fail-octagon.svg' class='icon fail-icon'><h3>NEW NAME DETECTED - SUBMIT DEBTOR'S DATA FIRST BEFORE ADDING DEBT DATA</h3>"
     
-    elif balance_data is not None:
-        # update running balance by adding debt_total and running_balance
-        new_balance = int(balance_data[1]) + int(debt_total)
+    elif debtor_id is not None:
+        # use created cursor to add new data into tb_debt_records table
+        c.execute('INSERT INTO tb_debt_records(debtor_id, debt_date, debt_amount, interest_rate, interest_amount, total_debt) VALUES(%s, %s, %s, %s, %s, %s)', (debtor_id, debt_date, debt_amount, debt_percent, debt_interest, debt_total, ))
+
+        # use created cursor to check if user-inputted name has existing balance record in tb_balance_records already
+        c.execute('SELECT id, running_balance FROM tb_balance_records WHERE debtor_id = %s', (debtor_id, ))
+
+        # fetch data gathered by the cursor
+        balance_data = c.fetchone()
+
+        # if-elif statement to check if the query returned a record that matches debtor_id
+        if balance_data is None:
+            # since debtor has no current balance, set debt_total as new_balance
+            new_balance = debt_total
+
+            # use created cursor to add new data into tb_balance_records table
+            c.execute('INSERT INTO tb_balance_records(debtor_id, running_balance) VALUES(%s, %s)', (debtor_id, new_balance, ))
         
-        # use created cursor to update name's existing record from tb_balance_records table
-        c.execute('UPDATE tb_balance_records SET running_balance = %s WHERE id = %s', (new_balance, balance_data[0]))
-        print('NAME EXISTS IN BALANCE RECORDS AND ITS RECORD UPDATED SUCCESSFULLY!')
+        elif balance_data is not None:
+            # calculate new_balance by adding debt_total and running_balance
+            new_balance = int(balance_data[1]) + int(debt_total)
+            
+            # use created cursor to update name's existing record from tb_balance_records table
+            c.execute('UPDATE tb_balance_records SET running_balance = %s WHERE id = %s', (new_balance, balance_data[0], ))
+        
+        # store a toast type in a variable for css styling of the toast message to be displayed
+        toast_type = 'success'
+
+        # store a toast message in a variable to notify user that submitted name exists already and debt data is added successfully
+        toast_message = f"<img src='/static/success-circle.svg' class='icon success-icon'><h3>EXISTING NAME DETECTED - DEBT DATA ADDED SUCCESSFULLY!</h3><br><h3>EXISTING DEBTOR'S NAME: {debt_name}</h3><br><p>DEBT DATE: {debt_date}<br>DEBT AMOUNT: {debt_amount}<br>INTEREST RATE (%): {debt_percent}<br>INTEREST AMOUNT: {debt_interest}<br>TOTAL DEBT: {debt_total}<br>RUNNING BALANCE: {new_balance}</p>"
 
     # commit changes to the database
     conn.commit()
@@ -56,3 +67,6 @@ def debt_input(debt_name, debt_date, debt_amount, debt_percent, debt_interest, d
     # close cursor and connect objects after the process
     c.close()
     conn.close()
+
+    # return results back to debt_processor() function for jsonification
+    return toast_type, toast_message

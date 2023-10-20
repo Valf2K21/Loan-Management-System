@@ -1,12 +1,13 @@
+/* base style of the entire loan system gui */
 body {
     height: 100vh;
     width: 100vw;
     margin: 0px;
-    align-items: center;
-    justify-content: center;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #007BFF;
 }
 
+/* universal style shared by input containers */
 .inputs {
     align-items: center;
     justify-content: center;
@@ -14,6 +15,7 @@ body {
     flex-direction: column;
 }
 
+/* grid style that defines available positions of the two major containers */
 .gui {
     height: 100vh;
     width: 100vw;
@@ -22,47 +24,42 @@ body {
     grid-template-rows: minmax(768px, 1fr);
 }
 
+/* major container 1 style that positions itself on the entire left side of the gui, while also defines available positions of its three submajor containers */
 .gui>.input_records {
-    /* styles for container's physical dimensions and position */
     grid-column: 1 / 2;
     grid-row: 1 / 1;
     display: grid;
     grid-template-columns: minmax(663px, 1fr);
     grid-template-rows: minmax(372px, 1fr) minmax(372px, 1fr) minmax(372px, 1fr);
     overflow: auto;
-    background-color: #EDF2F4;
 }
 
+/* submajor container 1 style that positions itself on the upper part of major container 1 */
 .gui>.input_records>.debtor_input {
-    /* styles for container's physical dimensions and position */
     grid-column: 1 / 1;
     grid-row: 1 / 2;
-    /* styles for container's aesthetic design and its children */
 }
 
+/* submajor container 2 style that positions itself on the central part of major container 1 */
 .gui>.input_records>.debt_input {
-    /* styles for container's physical dimensions and position */
     grid-column: 1 / 1;
     grid-row: 2 / 3;
-    /* styles for container's aesthetic design and its children */
 }
 
+/* submajor container 3 style that positions itself on the lower part of major container 1 */
 .gui>.input_records>.payment_input {
-    /* styles for container's physical dimensions and position */
     grid-column: 1 / 1;
     grid-row: 3 / 4;
-    /* styles for container's aesthetic design and its children */
 }
 
+/* major container 2 style that positions itself on the entire right side of the gui, while also defines available positions of its two submajor containers */
 .gui>.view_history {
-    /* styles for container's physical dimensions and position */
     grid-column: 2 / 3;
     grid-row: 1 / 1;
     display: grid;
     grid-template-columns: minmax(663px, 1fr);
     grid-template-rows: minmax(256px, 0.33fr) minmax(512px, 0.66fr);
     grid-gap: 10px;
-    background-color: #8D99AE;
 
     /* styles for container's aesthetic design and its children */
     align-items: center;
@@ -71,16 +68,17 @@ body {
     padding: 20px;
 }
 
+/* submajor container 1 style that positions itself on the upper part of major container 2 */
 .gui>.view_history>.history_input {
-    /* styles for container's physical dimensions and position */
     grid-column: 1 / 1;
     grid-row: 1 / 2;
 }
 
+/* submajor container 2 style that positions itself on the lower part of major container 2 */
 .gui>.view_history>.history_display {
-    /* styles for container's physical dimensions and position */
     grid-column: 1 / 1;
     grid-row: 2 / 3;
+
     /* styles for container's aesthetic design and its children */
     align-items: center;
     display: flex;
@@ -88,27 +86,134 @@ body {
     overflow: auto;
 }
 
+/* toast box container style that positions and hides itself on the lower right corner of the gui */
+#toast_box {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* universal style shared by generated toast notifications  */
+.toast {
+    width: 400px;
+    background-color: #FFFFFF;
+    margin: 15px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+
+    /* styles for toast notification animation from right to left */
+    transform: translateX(100%);
+    animation: moveleft 0.5s linear forwards;
+}
+
+/* moveleft{} keyframes animation function that will be called by .toast style above  */
+@keyframes moveleft {
+    100% {
+        transform: translateX(0);
+    }
+}
+
+/* box-shadow styles with color variations depending on generated toast notification type */
+.toast.success {
+    box-shadow: 0 0 20px green;
+}
+
+.toast.alert {
+    box-shadow: 0 0 20px orange;
+}
+
+.toast.fail {
+    box-shadow: 0 0 20px red;
+}
+
+/* text styles for generated toast notifications */
+.toast p {
+    margin: 0;
+    padding: 0;
+}
+
+.toast h3 {
+    margin: 5px 0;
+    padding: 0;
+    align-self: center;
+}
+
+/* universal degrading progress bar style shared by generated toast notifications */
+.toast::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 5px;
+    animation: anim 5s linear forwards;
+}
+
+/* anim{} keyframes animation function that will be called by .toast::after style above  */
+@keyframes anim {
+    100% {
+        width: 0;
+    }
+}
+
+/* degradomg progress bar styles with color variations depending on generated toast notification type */
+.toast.success::after {
+    background: green;
+}
+
+.toast.alert::after {
+    background: orange;
+}
+
+.toast.fail::after {
+    background: red;
+}
+
+/* universal size and position styles shared by svg icons of generated toast notifications */
+.icon {
+    width: 50px;
+    height: 50px;
+    align-self: center;
+}
+
+/* svg icons styles with color variations depending on icon type */
+.success-icon {
+    filter: invert(20%) sepia(44%) saturate(6915%) hue-rotate(102deg) brightness(98%) contrast(102%);
+}
+
+.alert-icon {
+    filter: invert(61%) sepia(45%) saturate(5628%) hue-rotate(1deg) brightness(104%) contrast(102%);
+}
+
+.fail-icon {
+    filter: invert(11%) sepia(82%) saturate(7470%) hue-rotate(1deg) brightness(99%) contrast(111%);
+}
+
+/* universal header style shared by the four transactions */
 h1 {
     margin-top: 0px;
     font-size: 30px;
     text-align: center;
-    color: #D90429;
+    color: #FFD700;
 }
 
+/* universal form-related styles shared by the four transactions */
 form {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto;
     gap: 10px;
 }
 
 label {
-    width: 100%;
-    font-weight: bold;
+    color: #FFFFFF;
 }
 
 input[type = "text"] {
-    width: 100%;
     font-size: 15px;
 }
 
@@ -121,34 +226,30 @@ button {
     font-size: 15px;
 }
 
+/* universal table-related styles shared by view debt and payment histories */
 table {
     width: 100%;
+    border: 3px solid black;
     border-collapse: collapse;
 }
 
 th {
-    border: 1px solid black;
+    border-bottom: 3px solid black;
     padding: 8px;
-    text-align: center;
-    background-color: #D90429;
-    color: white;
+    background-color: #6C757D;
+    color: #FFFFFF;
 }
 
 td {
-    border: 1px solid black;
+    border-bottom: 3px solid black;
     padding: 8px;
     text-align: center;
-    font-weight: normal;
-}
-
-tr {
-    color: black;
 }
 
  tr:nth-child(odd) {
-    background-color: #FC7188;
+    background-color: #CED9E0;
 }
 
  tr:nth-child(even) {
-     background-color: #FFEBEE;
+     background-color: #FFFFFF;
  }
