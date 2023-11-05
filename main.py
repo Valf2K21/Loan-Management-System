@@ -1,3 +1,21 @@
+'''
+    The Loan Management System is a web application for storing, managing, and viewing debtor, debt, and payment records.
+    Copyright (C) 2023 Valfrid Galinato
+    
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+    
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+    
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+'''
+
 # import dependencies
 import logging
 from flask import Flask, jsonify, render_template, request
@@ -114,4 +132,4 @@ def history_processor():
 # if-statement to run FLask web application instance
 if __name__ == '__main__':
     print('Loan System Link: http://127.0.0.1:5000/')
-    app.run(debug = True)
+    app.run()
