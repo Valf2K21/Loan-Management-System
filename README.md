@@ -16,7 +16,7 @@ This project is licensed under the [GNU Affero General Public License (AGPLv3)](
 ## Installation
 1. Clone this repository:
 ```cmd
-https://github.com/Valf2K21/Loan-Management-System.git
+git clone https://github.com/Valf2K21/Loan-Management-System.git
 cd Loan-Management-Systen
 ```
 2. Create virtual environment
@@ -28,9 +28,10 @@ python -m venv .venv
 ```cmd
 pip install -r requirements.txt
 ```
-4. Create new database in PostgreSQL 16's pgAdmin4
-5. Use loan_system_db_blank.sql to restore required tables in newly-created dataabase
-6. Run Loan Management System
+4. Create new database named loan_system_db in PostgreSQL 16's pgAdmin4
+5. Use loan_system_db_blank.sql to restore required tables in newly-created database
+6. Modify database.ini by changing values of host, user, and password if needed
+7. Run Loan Management System
 ```cmd
 python -m main
 ```
